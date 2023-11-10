@@ -1,7 +1,9 @@
 import 'package:anandmart_driver/routers/routers.dart';
+import 'package:anandmart_driver/widgets/app_assets.dart';
 import 'package:anandmart_driver/widgets/custome_size.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -84,13 +86,14 @@ class _DashbordScreenState extends State<DashbordScreen> {
               color: Color(0xffEFEFEF),
               thickness: 1,
             ),
+
             ListTile(
               visualDensity: const VisualDensity(horizontal: -4, vertical: -2),
               leading: Image.asset(
-                'assets/images/personImg.png',
+                'assets/images/time_track.png',
                 height: 15,
               ),
-              title:  Text('My Account',
+              title:  Text('My Order',
                   style: GoogleFonts.poppins(
                     fontSize: 15,
                     color: const Color(0xFF4F535E),
@@ -98,8 +101,7 @@ class _DashbordScreenState extends State<DashbordScreen> {
               onTap: () {
                 setState(() {
                   currentDrawer = 1;
-                  // Get.toNamed(MyRouters.myProfileScreen);
-                  // Get.to(VendorOrderList());
+                 Get.toNamed(MyRouters.assignedOrderScreen);
                 });
               },
             ),
@@ -108,13 +110,14 @@ class _DashbordScreenState extends State<DashbordScreen> {
               color: Color(0xffEFEFEF),
               thickness: 1,
             ),
+
             ListTile(
               visualDensity: const VisualDensity(horizontal: -4, vertical: -2),
               leading: Image.asset(
-                'assets/images/time_track.png',
+                'assets/images/salary.png',color: Colors.black54,
                 height: 15,
               ),
-              title:  Text('Assigned Order',
+              title:  Text('Salary',
                   style: GoogleFonts.poppins(
                     fontSize: 15,
                     color: const Color(0xFF4F535E),
@@ -122,7 +125,7 @@ class _DashbordScreenState extends State<DashbordScreen> {
               onTap: () {
                 setState(() {
                   currentDrawer = 2;
-                  // Get.toNamed(MyRouters.notificationScreen);
+                 Get.toNamed(MyRouters.salaryScreen);
                 });
               },
             ),
@@ -149,121 +152,30 @@ class _DashbordScreenState extends State<DashbordScreen> {
                 });
               },
             ),
-            const Divider(
-              height: 5,
-              color: Color(0xffEFEFEF),
-              thickness: 1,
-            ),
-            ListTile(
-              visualDensity: const VisualDensity(horizontal: -4, vertical: -2),
-              leading: Image.asset(
-                'assets/images/earn.png',
-                height: 15,
-              ),
-              title:  Text('Earning',
-                  style: GoogleFonts.poppins(
-                    fontSize: 15,
-                    color: const Color(0xFF4F535E),
-                    fontWeight: FontWeight.w400,)),
-              onTap: () {
-                setState(() {
-                  currentDrawer = 3;
-                  Get.toNamed(MyRouters.driverWithdrawMoney);
-                });
-              },
-            ),
-            // const Divider(
-            //   height: 5,
-            //   color: Color(0xffEFEFEF),
-            //   thickness: 1,
-            // ),
-            // ListTile(
-            //   visualDensity: const VisualDensity(horizontal: -4, vertical: -2),
-            //   leading: Image.asset(
-            //     'assets/images/notebook_reference.png',
-            //     height: 20,
-            //   ),
-            //   title:  Text('Refer and Earn',
-            //       style: GoogleFonts.poppins(
-            //         fontSize: 15,
-            //         color: const Color(0xFF4F535E),
-            //         fontWeight: FontWeight.w400,)),
-            //   onTap: () {
-            //     setState(() {
-            //       currentDrawer = 4;
-            //       // Get.to(VendorNotificationScreen());
-            //     });
-            //   },
-            // ),
-            const Divider(
-              height: 5,
-              color: Color(0xffEFEFEF),
-              thickness: 1,
-            ),
-            ListTile(
-              visualDensity: const VisualDensity(horizontal: -4, vertical: -2),
-              leading: Image.asset(
-                'assets/images/bx_wallet.png',
-                height: 15,
-              ),
-              title:  Text('Update Driver Setting',
-                  style: GoogleFonts.poppins(
-                    fontSize: 15,
-                    color: const Color(0xFF4F535E),
-                    fontWeight: FontWeight.w400,)),
-              onTap: () {
-                setState(() {
-                  currentDrawer = 5;
-                  Get.toNamed(MyRouters.bankDetailsScreen);
-                });
-              },
-            ),
-            const Divider(
-              height: 5,
-              color: Color(0xffEFEFEF),
-              thickness: 1,
-            ),
-            ListTile(
-              visualDensity: const VisualDensity(horizontal: -4, vertical: -2),
-              leading: Image.asset(
-                'assets/images/metro-security.png',
-                height: 15,
-              ),
-              title:  Text('Privacy Policy',
-                  style: GoogleFonts.poppins(
-                    fontSize: 15,
-                    color: const Color(0xFF4F535E),
-                    fontWeight: FontWeight.w400,)),
-              onTap: () {
-                setState(() {
-                  currentDrawer = 6;
-                  // Get.to(VendorHelpCenterScreen());
-                });
-              },
-            ),
-            const Divider(
-              height: 5,
-              color: Color(0xffEFEFEF),
-              thickness: 1,
-            ),
-            ListTile(
-              visualDensity: const VisualDensity(horizontal: -4, vertical: -2),
-              leading: Image.asset(
-                'assets/images/help_center.png',
-                height: 15,
-              ),
-              title:  Text('Help Center',
-                  style: GoogleFonts.poppins(
-                    fontSize: 15,
-                    color: const Color(0xFF4F535E),
-                    fontWeight: FontWeight.w400,)),
-              onTap: () {
-                setState(() {
-                  currentDrawer = 7;
-                  // Get.to(SettingScreenVendor());
-                });
-              },
-            ),
+
+ const Divider(
+   height: 5,
+   color: Color(0xffEFEFEF),
+   thickness: 1,
+ ),
+ ListTile(
+   visualDensity: const VisualDensity(horizontal: -4, vertical: -2),
+   leading: Image.asset(
+     'assets/images/profile.png',color: Colors.black54,
+     height: 15,
+   ),
+   title:  Text('My Profile',
+       style: GoogleFonts.poppins(
+         fontSize: 15,
+         color: const Color(0xFF4F535E),
+         fontWeight: FontWeight.w400,)),
+   onTap: () {
+     setState(() {
+       currentDrawer = 4;
+       Get.toNamed(MyRouters.profileScreen);
+     });
+   },
+ ),
             const Divider(
               height: 5,
               color: Color(0xffEFEFEF),
@@ -282,8 +194,8 @@ class _DashbordScreenState extends State<DashbordScreen> {
                     fontWeight: FontWeight.w400,)),
               onTap: () {
                 setState(() {
-                  currentDrawer = 7;
-                  // Get.to(SettingScreenVendor());
+                  currentDrawer = 5;
+                Get.offAllNamed(MyRouters.loginScreen);
                 });
               },
             ),
@@ -339,13 +251,39 @@ class _DashbordScreenState extends State<DashbordScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-             const Text('Hi, Hoanganhover!',
-               style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 20,
-                  color:  Color(0xFF303C5E)
-              ),),
-              addHeight(7.0),
+             Row(
+               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+               crossAxisAlignment: CrossAxisAlignment.start,
+               children: [
+                 const Text('Hi, Hoanganhover!',
+                   style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 20,
+                      color:  Color(0xFF303C5E)
+                  ),),
+                 Container(
+height: 30,
+                   decoration: BoxDecoration(
+                     borderRadius: BorderRadius.circular(5),
+                     color: Color(0xFF4DBA4D),
+                   ),
+                   child: Row(
+                     children: [
+                       SizedBox(width: 4,),
+                       SvgPicture.asset(AppAssets.map),
+                       Text('   See Route  ',
+                         style: GoogleFonts.quicksand(
+                             fontWeight: FontWeight.w700,
+                             fontSize: 13,
+                             color:  Colors.white
+                         ),
+                       ),
+                     ],
+                   ),
+                 )
+               ],
+             ),
+
               const Text('Monday, 2 June, 2021',
                 style: TextStyle(
                     fontWeight: FontWeight.w500,

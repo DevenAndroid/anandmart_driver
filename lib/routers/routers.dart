@@ -1,6 +1,7 @@
 
 import 'package:anandmart_driver/login_signup/onboarding_screen.dart';
 import 'package:anandmart_driver/screen/profile_screen.dart';
+import 'package:anandmart_driver/screen/salary_screen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import '../login_signup/email_verification_screen.dart';
 import '../login_signup/login_screen.dart';
@@ -34,12 +35,14 @@ class MyRouters {
   static var driverDeliveryOrderDetails = "/driverDeliveryOrderDetails";
   static var profileScreen = "/profileScreen";
   static var onBoardingScreen = "/onBoardingScreen";
+  static var salaryScreen = "/salaryScreen";
 
   static var route = [
     GetPage(name: '/', page: () =>  const SplashScreen()),
     // GetPage(name: '/onBoardingScreen', page: () =>  const OnBoardingScreen()),
     GetPage(name: '/onBoardingScreen', page: () =>  const OnBoardingScreen()),
     GetPage(name: '/loginScreen', page: () => const LoginScreenMart()),
+    GetPage(name: '/salaryScreen', page: () => const SalaryScreen()),
     GetPage(name: '/signupScreen', page: () => const SignupScreen()),
     GetPage(name: '/otpScreen', page: () => const OtpScreen()),
     GetPage(name: '/otpScreen', page: () => const OtpScreen()),

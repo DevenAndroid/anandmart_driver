@@ -140,26 +140,26 @@ padding: EdgeInsets.all(5),
                         tabs: [
                           Tab(
                             child: Text(
-                              "Active",
+                              "Information",
                               style: currentDrawer == 0
-                                  ? GoogleFonts.poppins(color: const Color(0xff1A2E33), fontSize: 16, fontWeight: FontWeight.w500)
-                                  : GoogleFonts.poppins(color: AppTheme.primaryColor, fontSize: 16, fontWeight: FontWeight.w500),
+                                  ? GoogleFonts.poppins(color: const Color(0xff1A2E33), fontSize: 14, fontWeight: FontWeight.w500)
+                                  : GoogleFonts.poppins(color: AppTheme.primaryColor, fontSize: 14, fontWeight: FontWeight.w500),
                             ),
                           ),
                           Tab(
                             child: Text(
-                              "Completed",
+                              "Address",
                               style: currentDrawer == 1
-                                  ? GoogleFonts.poppins(color: Colors.cyan, fontSize: 16, fontWeight: FontWeight.w500)
-                                  : GoogleFonts.poppins(color: Color(0xff1A2E33), fontSize: 16, fontWeight: FontWeight.w500),
+                                  ? GoogleFonts.poppins(color: Colors.cyan, fontSize: 14, fontWeight: FontWeight.w500)
+                                  : GoogleFonts.poppins(color: Color(0xff1A2E33), fontSize: 14, fontWeight: FontWeight.w500),
                             ),
                           ),
                           Tab(
                             child: Text(
-                              "Cancelled",
+                              "Document",
                               style: currentDrawer == 1
-                                  ? GoogleFonts.poppins(color: Colors.cyan, fontSize: 16, fontWeight: FontWeight.w500)
-                                  : GoogleFonts.poppins(color: Color(0xff1A2E33), fontSize: 16, fontWeight: FontWeight.w500),
+                                  ? GoogleFonts.poppins(color: Colors.cyan, fontSize: 14, fontWeight: FontWeight.w500)
+                                  : GoogleFonts.poppins(color: Color(0xff1A2E33), fontSize: 14, fontWeight: FontWeight.w500),
                             ),
                           ),
                         ],
