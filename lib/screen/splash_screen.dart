@@ -19,8 +19,8 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   userCheck() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    if (pref.getString('cookie') != null) {
-    // Get.offAllNamed(MyRouters.bottomNavbar);
+    if (pref.getString('user_info') != null) {
+    Get.offAllNamed(MyRouters.dashbordScreen);
     }
     else{
       Get.offAllNamed(MyRouters.onBoardingScreen);
@@ -41,13 +41,16 @@ class _SplashScreenState extends State<SplashScreen> {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor:  Colors.white,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(child: SvgPicture.asset(AppAssets.anand)),
+      body: Padding(
+        padding: const EdgeInsets.all(25.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(child: SvgPicture.asset(AppAssets.anand)),
 
-        ],
+          ],
+        ),
       ),
     );
   }

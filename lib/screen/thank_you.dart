@@ -9,7 +9,7 @@ import '../widgets/custome_textfiled.dart';
 import '../widgets/dimenestion.dart';
 
 class ThankYouVendorScreen extends StatefulWidget {
-  const ThankYouVendorScreen({Key? key}) : super(key: key);
+  const   ThankYouVendorScreen({Key? key}) : super(key: key);
   static var thankYouVendorScreen = "/thankYouVendorScreen";
   @override
   State<ThankYouVendorScreen> createState() => _ThankYouVendorScreenState();

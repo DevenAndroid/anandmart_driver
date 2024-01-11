@@ -53,7 +53,7 @@ class OnBoardModelResponse {
 List<OnBoardModelResponse> OnBoardingData = [
   OnBoardModelResponse(
     image: AppAssets.onboarding,
-    title: "20% Discount New Arrival Product",
+    title: "20% Discount New Arrival\nProduct",
 
     description: 'Get a little lift from these Sam Edelman sandals featuring ruched straps and leather lace-up ties,',
 

@@ -6,6 +6,7 @@ class AppAssets {
   static const String locationMarker = "assets/images/location_marker.png";
   static const String drawer_location = "assets/images/drawer_location.png";
   static const String tq = "assets/images/approve 1.png";
+  static const String personLogo = "assets/images/personLogo.png";
   static const String orderList = "assets/images/orderlist2.png";
   static const String store1Icon = "assets/images/store1.png";
   static const String arrow = "assets/icons/arrow.svg";
@@ -18,6 +19,7 @@ class AppAssets {
   static const String anand = "assets/icons/anand.svg";
   static const String arrowBack = "assets/icons/arrowback.svg";
   static const String map = "assets/icons/map.svg";
+  // static const String anand = "assets/icons/anand.svg";
   static const String camera = "assets/icons/camera.svg";
 
 }

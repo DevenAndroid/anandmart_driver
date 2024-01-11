@@ -41,11 +41,20 @@ dependencies:
   google_fonts:
   pinput: ^2.2.21
   form_field_validator:
+  fluttertoast:
   intl: ^0.17.0
   flutter_slidable:
+  http: ^1.1.2
+  firebase_core: ^2.4.1
+  firebase_messaging: ^14.2.1
   image_picker:
   file_picker:
   url_launcher:
+  geolocator:
+  flutter_google_places_hoc081098:
+  google_api_headers:
+  cached_network_image:
+  pin_code_fields:
   dotted_border: ^2.1.0
   flutter_svg:
 

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../Resources/common_text.dart';
 import '../widgets/custome_textfiled.dart';
 
 class BankDetailsScreen extends StatefulWidget {
@@ -101,7 +102,7 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
                     ),
                     addHeight(20),
                     RegistrationTextFieldChk1(
-                      hint: 'IBAN',
+                      hint: 'Bank Account Number',
                       onTap: (){},
                     ),
                     addHeight(20),
@@ -111,7 +112,7 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
                     ),
                     addHeight(20),
                     RegistrationTextFieldChk1(
-                      hint: 'BIC/SWIFT code',
+                      hint: 'IFSC Code',
                       onTap: (){},
                     ),
                     addHeight(25),
@@ -119,7 +120,7 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
                       onPressed: () {
                        Get.toNamed(MyRouters.profileScreen);
                       },
-                      title: "Add Account",
+                      title: "ADD ACCOUNT",
                     ),
                   ],
                 ),

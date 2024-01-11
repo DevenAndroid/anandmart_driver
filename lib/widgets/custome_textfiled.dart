@@ -438,47 +438,47 @@ class CommonButton1 extends StatelessWidget {
 }
 
 
-AppBar backAppBar(
-    {required title,
-      required BuildContext context,
-      String dispose = "",
-      Color? backgroundColor = Colors.white,
-      Color? textColor = Colors.black,
-      Widget? icon,
-      disposeController}) {
-  return AppBar(
-    //shadowColor:  Colors.grey[400],
-    toolbarHeight: 60,
-    elevation: 0,
-    titleSpacing: 30,
-    surfaceTintColor: Colors.grey.shade300,
-    leadingWidth: AddSize.size40 * 0.9,
-    backgroundColor: backgroundColor,
-    title: Text(
-      title,
-      style: GoogleFonts.quicksand(
-          fontWeight: FontWeight.w700,
-          fontSize: 18,
-          color: const Color(0xFF303C5E)
-      ),
-    ),
-    leading: Padding(
-      padding: EdgeInsets.only(left: AddSize.padding12),
-      child: GestureDetector(
-          onTap: () {
-            Get.back();
-            if (dispose == "dispose") {}
-          },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              icon ??
-                  SvgPicture.asset(AppAssets.arrowBack)
-            ],
-          )),
-    ),
-  );
-}
+// AppBar backAppBar(
+//     {required title,
+//       required BuildContext context,
+//       String dispose = "",
+//       Color? backgroundColor = Colors.white,
+//       Color? textColor = Colors.black,
+//       Widget? icon,
+//       disposeController}) {
+//   return AppBar(
+//     //shadowColor:  Colors.grey[400],
+//     toolbarHeight: 60,
+//     elevation: 0,
+//     titleSpacing: 30,
+//     surfaceTintColor: Colors.grey.shade300,
+//     leadingWidth: AddSize.size40 * 0.9,
+//     backgroundColor: backgroundColor,
+//     title: Text(
+//       title,
+//       style: GoogleFonts.quicksand(
+//           fontWeight: FontWeight.w700,
+//           fontSize: 18,
+//           color: const Color(0xFF303C5E)
+//       ),
+//     ),
+//     leading: Padding(
+//       padding: EdgeInsets.only(left: AddSize.padding12),
+//       child: GestureDetector(
+//           onTap: () {
+//             Get.back();
+//             if (dispose == "dispose") {}
+//           },
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               icon ??
+//                   SvgPicture.asset(AppAssets.arrowBack)
+//             ],
+//           )),
+//     ),
+//   );
+// }
 class CommonTextFieldWidget extends StatelessWidget {
   final IconData? suffixIcon;
   final IconData? prefixIcon;

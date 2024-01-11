@@ -1,11 +1,9 @@
 import 'dart:async';
+import 'package:anandmart_driver/authentication/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fresh2_arrive/screens/onboarding_screen.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../resources/app_assets.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -44,7 +42,11 @@ class _SplashScreenState extends State<SplashScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(child: SvgPicture.asset(AppAssets.anand)),
+          Center(
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: SvgPicture.asset("assets/icons/anand.svg"),
+              )),
 
         ],
       ),

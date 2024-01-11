@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../Resources/common_text.dart';
 import '../widgets/app_theme.dart';
 import '../widgets/custome_textfiled.dart';
 import '../widgets/dimenestion.dart';

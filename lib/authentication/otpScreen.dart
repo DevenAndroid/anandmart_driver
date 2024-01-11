@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
 
+import '../Resources/common_text.dart';
 import '../widgets/custome_size.dart';
 import '../widgets/custome_textfiled.dart';
 import '../widgets/dimenestion.dart';
