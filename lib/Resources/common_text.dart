@@ -46,17 +46,15 @@ AppBar backAppBar(
           fontWeight: FontWeight.w500, fontSize: 20, color: textColor),
     ),
     leading: Padding(
-      padding: EdgeInsets.only(left: AddSize.padding10),
+      padding: EdgeInsets.only(left: AddSize.padding12),
       child: GestureDetector(
           onTap: () {
             Get.back();
-            if (dispose == "dispose") {}
           },
-          child: icon ??
-              Image.asset(
-                AppAssets.arrowBack,
-                height: AddSize.size20,
-              )),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [SvgPicture.asset(AppAssets.arrowBack)],
+          )),
     ),
   );
 }

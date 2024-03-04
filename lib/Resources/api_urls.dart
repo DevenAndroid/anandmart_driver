@@ -13,6 +13,8 @@ class ApiUrl {
   static const driverRegisterUrl = "${baseUrl}driver-register";
   static const driverInfoUrl = "${baseUrl}driver-information";
   static const updateProfileUrl = "${baseUrl}driver-update-profile";
+  static const socialLoginUrl = "${baseUrl}social-login";
+  static const dashBoardUrl = "${baseUrl}driver-dashboard";
 
 }
 

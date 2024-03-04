@@ -1,13 +1,16 @@
 
 import 'dart:convert';
+import 'dart:developer';
 import 'package:anandmart_driver/widgets/app_assets.dart';
 import 'package:anandmart_driver/widgets/app_text.dart';
 import 'package:anandmart_driver/widgets/app_theme.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Repository/login_repo.dart';
@@ -184,7 +187,12 @@ class _LoginScreenMartState extends State<LoginScreenMart> {
                       SizedBox(width: 20,),
                       SvgPicture.asset("assets/images/facebook.svg"),
                       SizedBox(width: 20,),
-                      SvgPicture.asset("assets/images/google.svg"),
+                      GestureDetector(
+                          onTap: (){
+                            signInWithGoogle();
+                            print("Hello");
+                          },
+                          child: SvgPicture.asset("assets/images/google.svg")),
 
 
                     ],
@@ -223,4 +231,39 @@ class _LoginScreenMartState extends State<LoginScreenMart> {
       ),
     );
   }
+  signInWithGoogle() async {
+    await GoogleSignIn().signOut();
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn().catchError((e){
+      throw Exception(e);
+    });
+
+    log(googleUser!.email.toString());
+
+    final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+    final credential = GoogleAuthProvider.credential(
+      idToken: googleAuth.idToken,
+      accessToken: googleAuth.accessToken,
+    );
+    final value = await FirebaseAuth.instance.signInWithCredential(credential);
+
+    log("Tokenisss -------${value.credential!.accessToken}");
+    // log(value.additionalUserInfo!.a);
+    socialLogin(
+      provider: "google",
+      token: value.credential!.accessToken!,
+      context: context,
+      role: "7"
+          "",
+    ).then((value) async {
+      if (value.status == true) {
+        SharedPreferences pref = await SharedPreferences.getInstance();
+        pref.setString('user_info', jsonEncode(value));
+        showToast(value.message);
+        Get.offAll(()=>const DashbordScreen());
+      } else {
+        showToast(value.message);
+      }
+    });
+  }
+
 }

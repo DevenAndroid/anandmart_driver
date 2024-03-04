@@ -1,7 +1,9 @@
+import 'dart:convert';
+import 'package:anandmart_driver/Repository/common_repo.dart';
+import 'package:anandmart_driver/Resources/api_urls.dart';
 import 'package:anandmart_driver/authentication/login_screen.dart';
 import 'package:anandmart_driver/routers/routers.dart';
 import 'package:anandmart_driver/widgets/app_assets.dart';
-import 'package:anandmart_driver/widgets/custome_size.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,8 +11,8 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../Resources/common_text.dart';
+import '../models/driver_dashboard_model.dart';
 import '../widgets/dimenestion.dart';
 import 'order_history.dart';
 
@@ -22,9 +24,26 @@ class DashbordScreen extends StatefulWidget {
 }
 
 class _DashbordScreenState extends State<DashbordScreen> {
+  Repositories repositories = Repositories();
+  DriverDashboardModel? dashboardModel;
+
+  getDashboardData(){
+    repositories.getApi(url: ApiUrl.dashBoardUrl).then((value){
+      dashboardModel = DriverDashboardModel.fromJson(jsonDecode(value));
+      setState(() {});
+    });
+  }
+
   bool state = true;
   double _value = 20;
   int currentDrawer = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    getDashboardData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -251,13 +270,14 @@ class _DashbordScreenState extends State<DashbordScreen> {
                 ' Delivey Mode',
                 style: TextStyle(fontWeight: FontWeight.w500, fontSize: 10, color: Color(0xFF303C5E)),
               ),
+              if(dashboardModel!.data != null)
               Transform.scale(
                 scale: 0.8,
                 child: CupertinoSwitch(
                     activeColor: const Color(0xFF7ED957),
-                    value: state,
+                    value: dashboardModel!.data!.deliveryMode!,
                     onChanged: (value) {
-                      state = value;
+                      dashboardModel!.data!.deliveryMode = value;
                       setState(
                         () {},
                       );
@@ -272,7 +292,9 @@ class _DashbordScreenState extends State<DashbordScreen> {
           style: GoogleFonts.quicksand(fontWeight: FontWeight.w700, fontSize: 15, color: const Color(0xFF303C5E)),
         ),
       ),
-      body: SingleChildScrollView(
+      body:
+          dashboardModel != null ?
+      SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
@@ -283,8 +305,8 @@ class _DashbordScreenState extends State<DashbordScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Hi, Hoanganhover!',
+                   Text(
+                    'Hi, ${dashboardModel!.data!.username.toString()}',
                     style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20, color: Color(0xFF303C5E)),
                   ),
                   Container(
@@ -308,9 +330,9 @@ class _DashbordScreenState extends State<DashbordScreen> {
                   )
                 ],
               ),
-              const Text(
-                'Monday, 2 June, 2021',
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13, color: Color(0xFF303C5E)),
+               Text(
+                 dashboardModel!.data!.createdAt.toString(),
+                style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 13, color: Color(0xFF303C5E)),
               ),
               addHeight(26.0),
               Row(
@@ -343,12 +365,12 @@ class _DashbordScreenState extends State<DashbordScreen> {
                               left: 10,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children:  [
                                   Text(
-                                    '10',
-                                    style: TextStyle(color: Color(0xFF7ED957), fontWeight: FontWeight.w700, fontSize: 21),
+                                    dashboardModel!.data!.deliveredOrders!.toString(),
+                                    style: const TextStyle(color: Color(0xFF7ED957), fontWeight: FontWeight.w700, fontSize: 21),
                                   ),
-                                  Text(
+                                  const Text(
                                     'Delivered',
                                     style: TextStyle(color: Color(0xFF393E50), fontWeight: FontWeight.w600, fontSize: 14),
                                   )
@@ -383,13 +405,13 @@ class _DashbordScreenState extends State<DashbordScreen> {
                               left: 10,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children:  [
                                   Text(
-                                    '\$240.00',
+                                    dashboardModel!.data!.pendingOrders!.toString(),
                                     style: TextStyle(color: Color(0xFFFF980E), fontWeight: FontWeight.w700, fontSize: 21),
                                   ),
-                                  Text(
-                                    'Delivered',
+                                  const Text(
+                                    'Pending',
                                     style: TextStyle(color: Color(0xFF393E50), fontWeight: FontWeight.w600, fontSize: 14),
                                   )
                                 ],
@@ -411,7 +433,7 @@ class _DashbordScreenState extends State<DashbordScreen> {
                     style: GoogleFonts.quicksand(fontWeight: FontWeight.w700, fontSize: 18, color: const Color(0xFF303C5E)),
                   ),
                   Text(
-                    '(14)',
+                    "(${dashboardModel!.data!.todaysOrder.toString()})",
                     style: GoogleFonts.quicksand(fontWeight: FontWeight.w700, fontSize: 18, color: const Color(0xFF4DBA4D)),
                   ),
                   Spacer(),
@@ -433,10 +455,13 @@ class _DashbordScreenState extends State<DashbordScreen> {
               addHeight(12.0),
               ListView.builder(
                 shrinkWrap: true,
-                itemCount: 5,
+                itemCount: dashboardModel!.data!.driverList!.length,
                 physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return Column(
+                itemBuilder: (context, i) {
+                  final driverOrderList= dashboardModel!.data!.driverList![i];
+                  return
+                  dashboardModel!.data != null ?
+                    Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       InkWell(
@@ -485,13 +510,13 @@ class _DashbordScreenState extends State<DashbordScreen> {
                                     ),
                                     addWidth(20),
                                     Text(
-                                      'Date:',
+                                      "Date",
                                       style: GoogleFonts.quicksand(
                                           fontWeight: FontWeight.w700, fontSize: 14, color: const Color(0xFF303C5E)),
                                     ),
                                     Spacer(),
                                     Text(
-                                      'Mon 2 June, 2021 – 10:30am',
+                                      driverOrderList.date.toString(),
                                       style: GoogleFonts.quicksand(
                                           fontWeight: FontWeight.w400, fontSize: 15, color: const Color(0xFF3E525A)),
                                     ),
@@ -513,7 +538,7 @@ class _DashbordScreenState extends State<DashbordScreen> {
                                     ),
                                     Spacer(),
                                     Text(
-                                      '#258147963.',
+                                      '# ${driverOrderList.orderId.toString()}',
                                       style: GoogleFonts.quicksand(
                                           fontWeight: FontWeight.w400, fontSize: 15, color: const Color(0xFF3E525A)),
                                     ),
@@ -534,9 +559,10 @@ class _DashbordScreenState extends State<DashbordScreen> {
                                       style: GoogleFonts.quicksand(
                                           fontWeight: FontWeight.w700, fontSize: 14, color: const Color(0xFF303C5E)),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
+                                    if(driverOrderList.address != null)
                                     Text(
-                                      '600 East Carpenter Freeway',
+                                      "${driverOrderList.address!.address1.toString()} ${driverOrderList.address!.address2.toString()} ${driverOrderList.address!.city.toString()} ${driverOrderList.address!.zipCode.toString()}",
                                       style: GoogleFonts.quicksand(
                                           fontWeight: FontWeight.w400, fontSize: 15, color: const Color(0xFF3E525A)),
                                     ),
@@ -550,13 +576,13 @@ class _DashbordScreenState extends State<DashbordScreen> {
                       ),
                       addHeight(20),
                     ],
-                  );
+                  ):const CircularProgressIndicator(color: Colors.green,);
                 },
               ),
             ],
           ),
         ),
-      ),
+      ):const CircularProgressIndicator(color: Colors.green,),
     );
   }
 }

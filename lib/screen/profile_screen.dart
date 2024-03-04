@@ -38,7 +38,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final vichileController = TextEditingController();
   final licenceController = TextEditingController();
   final insuranceController = TextEditingController();
-  final addressController = TextEditingController();
+  final address1Controller = TextEditingController();
+  final address2Controller = TextEditingController();
+  final cityController = TextEditingController();
+  final stateController = TextEditingController();
+  final zipCodeController = TextEditingController();
+  final oPController = TextEditingController();
   Repositories repositories = Repositories();
   DriverProfileModel? driverProfileModel;
   final key = GlobalKey<ScaffoldState>();
@@ -58,7 +63,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
       vichileController.text = driverProfileModel!.data!.vehicleNo.toString();
       licenceController.text = driverProfileModel!.data!.licenceNo.toString();
       insuranceController.text = driverProfileModel!.data!.licenceNo.toString();
-      addressController.text = driverProfileModel!.data!.location.toString();
+      address1Controller.text = driverProfileModel!.data!.address1.toString();
+      address2Controller.text = driverProfileModel!.data!.address2.toString();
+      cityController.text = driverProfileModel!.data!.city.toString().capitalizeFirst.toString();
+      stateController.text = driverProfileModel!.data!.state.toString().capitalizeFirst.toString();
+      zipCodeController.text = driverProfileModel!.data!.code ?? "";
       setState(() {});
     });
   }
@@ -529,7 +538,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                   ],
                                                 ),
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 25,
                                               ),
                                               Expanded(
@@ -603,118 +612,123 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           height: 10,
                                         ),
                                         RegisterTextFieldWidget(
-                                          controller: addressController,
+                                          controller: address1Controller,
                                           onTap: () {},
                                           hint: 'Address 1',
-                                          minLines: 5,
+                                          // minLines: 5,
                                           maxLines: null,
                                         ),
-                                        // addHeight(15),
-                                        // Text("Address 2",
-                                        //   style: GoogleFonts.quicksand(
-                                        //     fontWeight: FontWeight.w600,
-                                        //     fontSize: 15,
-                                        //     color:const Color(0xFF000000),
-                                        //     // fontStyle: FontStyle.italic,
-                                        //   ),),
-                                        // const SizedBox(height: 10,),
-                                        // RegisterTextFieldWidget(
-                                        //   onTap: () {},
-                                        //   hint: 'Address 2',
-                                        // ),
-                                        // addHeight(15),
-                                        // Row(
-                                        //   children: [
-                                        //     Expanded(
-                                        //       child: Column(
-                                        //         mainAxisAlignment: MainAxisAlignment.start,
-                                        //         crossAxisAlignment: CrossAxisAlignment.start,
-                                        //         children: [
-                                        //           Text("City",
-                                        //             style: GoogleFonts.quicksand(
-                                        //               fontWeight: FontWeight.w600,
-                                        //               fontSize: 15,
-                                        //               color:const Color(0xFF000000),
-                                        //               // fontStyle: FontStyle.italic,
-                                        //             ),),
-                                        //           const SizedBox(height: 10,),
-                                        //           RegisterTextFieldWidget(
-                                        //             onTap: () {},
-                                        //             hint: 'City',
-                                        //           ),
-                                        //         ],
-                                        //       ),
-                                        //     ),
-                                        //     SizedBox(width: 25,),
-                                        //     Expanded(
-                                        //       child: Column(
-                                        //         mainAxisAlignment: MainAxisAlignment.start,
-                                        //         crossAxisAlignment: CrossAxisAlignment.start,
-                                        //         children: [
-                                        //           Text("State",
-                                        //             style: GoogleFonts.quicksand(
-                                        //               fontWeight: FontWeight.w600,
-                                        //               fontSize: 15,
-                                        //               color:const Color(0xFF000000),
-                                        //               // fontStyle: FontStyle.italic,
-                                        //             ),),
-                                        //           const SizedBox(height: 10,),
-                                        //           RegisterTextFieldWidget(
-                                        //             onTap: () {},
-                                        //             hint: 'State',
-                                        //           ),
-                                        //         ],
-                                        //       ),
-                                        //     ),
-                                        //   ],
-                                        // ),
-                                        //
-                                        // addHeight(15),
-                                        // Row(
-                                        //   children: [
-                                        //     Expanded(
-                                        //       child: Column(
-                                        //         mainAxisAlignment: MainAxisAlignment.start,
-                                        //         crossAxisAlignment: CrossAxisAlignment.start,
-                                        //         children: [
-                                        //           Text("Zipcode",
-                                        //             style: GoogleFonts.quicksand(
-                                        //               fontWeight: FontWeight.w600,
-                                        //               fontSize: 15,
-                                        //               color:const Color(0xFF000000),
-                                        //               // fontStyle: FontStyle.italic,
-                                        //             ),),
-                                        //           const SizedBox(height: 10,),
-                                        //           RegisterTextFieldWidget(
-                                        //             onTap: () {},
-                                        //             hint: 'Zipcode',
-                                        //           ),
-                                        //         ],
-                                        //       ),
-                                        //     ),
-                                        //     SizedBox(width: 25,),
-                                        //     Expanded(
-                                        //       child: Column(
-                                        //         mainAxisAlignment: MainAxisAlignment.start,
-                                        //         crossAxisAlignment: CrossAxisAlignment.start,
-                                        //         children: [
-                                        //           Text("Landmark (optional)",
-                                        //             style: GoogleFonts.quicksand(
-                                        //               fontWeight: FontWeight.w600,
-                                        //               fontSize: 15,
-                                        //               color:const Color(0xFF000000),
-                                        //               // fontStyle: FontStyle.italic,
-                                        //             ),),
-                                        //           const SizedBox(height: 10,),
-                                        //           RegisterTextFieldWidget(
-                                        //             onTap: () {},
-                                        //             hint: 'Landmark (optional)',
-                                        //           ),
-                                        //         ],
-                                        //       ),
-                                        //     ),
-                                        //   ],
-                                        // ),
+                                        addHeight(15),
+                                        Text("Address 2",
+                                          style: GoogleFonts.quicksand(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 15,
+                                            color:const Color(0xFF000000),
+                                            // fontStyle: FontStyle.italic,
+                                          ),),
+                                        const SizedBox(height: 10,),
+                                        RegisterTextFieldWidget(
+                                            controller: address2Controller,
+                                          onTap: () {},
+                                          hint: 'Address 2',
+                                        ),
+                                        addHeight(15),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text("City",
+                                                    style: GoogleFonts.quicksand(
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 15,
+                                                      color:const Color(0xFF000000),
+                                                      // fontStyle: FontStyle.italic,
+                                                    ),),
+                                                  const SizedBox(height: 10,),
+                                                  RegisterTextFieldWidget(
+                                                    controller: cityController,
+                                                    onTap: () {},
+                                                    hint: 'City',
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            SizedBox(width: 25,),
+                                            Expanded(
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text("State",
+                                                    style: GoogleFonts.quicksand(
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 15,
+                                                      color:const Color(0xFF000000),
+                                                      // fontStyle: FontStyle.italic,
+                                                    ),),
+                                                  const SizedBox(height: 10,),
+                                                  RegisterTextFieldWidget(
+                                                    controller: stateController,
+                                                    onTap: () {},
+                                                    hint: 'State',
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+
+                                        addHeight(15),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text("Zipcode",
+                                                    style: GoogleFonts.quicksand(
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 15,
+                                                      color:const Color(0xFF000000),
+                                                      // fontStyle: FontStyle.italic,
+                                                    ),),
+                                                  const SizedBox(height: 10,),
+                                                  RegisterTextFieldWidget(
+                                                    controller: zipCodeController,
+                                                    onTap: () {},
+                                                    hint: 'Zipcode',
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            SizedBox(width: 25,),
+                                            Expanded(
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text("Other Instruction",
+                                                    style: GoogleFonts.quicksand(
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 15,
+                                                      color:const Color(0xFF000000),
+                                                      // fontStyle: FontStyle.italic,
+                                                    ),),
+                                                  const SizedBox(height: 10,),
+                                                  RegisterTextFieldWidget(
+                                                    controller: oPController,
+                                                    onTap: () {},
+                                                    hint: 'Other',
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -915,11 +929,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     'last_name': lastController.text,
                     'email': emailController.text,
                     'phone': phoneController.text,
-                    'location': addressController.text,
                     'identity_card': idController.text,
                     'insurance_no': insuranceController.text,
                     'vehicle_no': vichileController.text,
                     'licence_no': licenceController.text,
+                    'address_1': address1Controller.text,
+                    'address_2': address2Controller.text,
+                    'city': cityController.text,
+                    'state': stateController.text,
+                    'zipCode': zipCodeController.text,
+                    'otherInstruction': oPController.text,
                   };
                   editUserProfileRepo(
                     context: context,

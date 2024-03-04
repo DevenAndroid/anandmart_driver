@@ -56,6 +56,8 @@ dependencies:
   cached_network_image:
   pin_code_fields:
   dotted_border: ^2.1.0
+  google_sign_in: ^6.1.6
+  firebase_auth: ^4.15.2
   flutter_svg:
 
 dev_dependencies:

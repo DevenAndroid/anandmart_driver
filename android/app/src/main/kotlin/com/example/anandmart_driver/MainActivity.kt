@@ -1,4 +1,4 @@
-package com.example.anandmart_driver
+package com.anandMart_driver.android
 
 import io.flutter.embedding.android.FlutterActivity
 
